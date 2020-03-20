@@ -24,9 +24,25 @@ const movie = [
 
 
 class App extends Component{
+//render 순서 :componentWillMount() -> render()->componentDidMount()
+//update 순서 :componentWillReactiveprops()->shouldComponentUpdate()->componentWillUpdate()->render()->componentDidUpdate()
+  state = {
+    greating:'hello'
+  }
+
+  componentDidMount(){
+    setTimeout(() => {
+      this.setState({
+        greating: 'hello again'
+      })
+    }, 5000);
+  }
+
   render(){
+    
     return (
       <div className="App">
+        {this.state.greating}
         {movie.map((movie,index) =>{
           return <Movie title={movie.title} poster={movie.image} key={index}/>
         })}
